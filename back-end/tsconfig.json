@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    // Version de JS que le code compilé utilise. Node 26 comprend tout,
+    // donc pas besoin de rétro-transpiler vers du vieux JS.
+    "target": "ES2023",
+    "lib": ["ES2023"],
+
+    // Format des modules en sortie. "NodeNext" = "respecte le champ
+    // `type` du package.json" -> comme il vaut "module", on est en ESM.
+    "module": "NodeNext",
+    // Comment TS résout un `import "./x.ts"`. Doit être cohérent avec `module`.
+    "moduleResolution": "NodeNext",
+
+    // Racine du code source / dossier de sortie du build (`npm run build`).
+    "rootDir": "src",
+    "outDir": "dist",
+
+    // Active tous les contrôles stricts (null-checks, `any` implicite interdit, etc.).
+    // Non négociable pour apprendre proprement.
+    "strict": true,
+
+    // Autorise `import express from "express"` alors qu'Express est publié en CommonJS.
+    "esModuleInterop": true,
+
+    // Ne pas typechecker les fichiers .d.ts des dépendances -> `tsc` beaucoup plus rapide.
+    "skipLibCheck": true,
+
+    // Force une syntaxe d'import/export sans ambiguïté. Nécessaire quand Node
+    // se contente de "stripper" les types sans les compiler.
+    "verbatimModuleSyntax": true,
+
+    // Fait connaître à TS les globals de Node (process, console, modules "node:*").
+    "types": ["node"]
+  },
+
+  // Quels fichiers TS surveille / typecheck.
+  "include": ["src"]
+}

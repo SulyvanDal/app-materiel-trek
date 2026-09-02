@@ -1,6 +1,9 @@
 # deps
 node_modules/
 
+# build
+dist/
+
 # env & secrets
 .env
 .env.*
