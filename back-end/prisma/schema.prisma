@@ -1,0 +1,38 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Bag {
+  id        Int       @id @default(autoincrement())
+  name      String
+  bagItem   BagItem[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Item {
+  id            Int       @id @default(autoincrement())
+  name          String
+  weightGrams   Int       @default(0)
+  category      String
+  ownedQuantity Int       @default(1)
+  bagItem       BagItem[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model BagItem {
+  bag         Bag     @relation(fields: [bagId], references: [id], onDelete: Cascade)
+  bagId       Int
+  item        Item    @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  itemId      Int
+  bagQuantity Int     @default(1)
+  isRequired  Boolean @default(false)
+
+  @@id([bagId, itemId])
+}

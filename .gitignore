@@ -1,0 +1,14 @@
+# deps
+node_modules/
+
+# env & secrets
+.env
+.env.*
+!.env.example
+
+# base locale
+*.db
+*.db-journal
+
+# OS / éditeur
+.DS_Store

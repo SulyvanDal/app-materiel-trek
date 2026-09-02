@@ -1,0 +1,30 @@
+-- CreateTable
+CREATE TABLE "Bag" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Item" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL,
+    "weightGrams" INTEGER NOT NULL DEFAULT 0,
+    "category" TEXT NOT NULL,
+    "ownedQuantity" INTEGER NOT NULL DEFAULT 1,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "BagItem" (
+    "bagId" INTEGER NOT NULL,
+    "itemId" INTEGER NOT NULL,
+    "bagQuantity" INTEGER NOT NULL DEFAULT 1,
+    "isRequired" BOOLEAN NOT NULL DEFAULT false,
+
+    PRIMARY KEY ("bagId", "itemId"),
+    CONSTRAINT "BagItem_bagId_fkey" FOREIGN KEY ("bagId") REFERENCES "Bag" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "BagItem_itemId_fkey" FOREIGN KEY ("itemId") REFERENCES "Item" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
