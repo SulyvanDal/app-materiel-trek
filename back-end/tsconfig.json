@@ -10,7 +10,9 @@
     "module": "NodeNext",
     // Comment TS résout un `import "./x.ts"`. Doit être cohérent avec `module`.
     "moduleResolution": "NodeNext",
-
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+    
     // Racine du code source / dossier de sortie du build (`npm run build`).
     "rootDir": "src",
     "outDir": "dist",

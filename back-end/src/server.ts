@@ -1,2 +1,4 @@
-const port = 3000;
-console.log(`Serveur pret (pas encore d Express) sur :${port}`);
+import app from "./app.ts"
+
+const port = Number(process.env.PORT)||3000;
+app.listen(port, () => { console.log("Serveur sur :"+port) });
